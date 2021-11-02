@@ -4,6 +4,7 @@ This is a pseudo HTML page generator DSL.
 ## How to use
 To run a ruby file type ```ruby task3.rb```.
 
+## Result
 The output will be:
 ```html
 <!doctype html>

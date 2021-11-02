@@ -1,58 +1,59 @@
 class MDHtml
-    @result
+    attr_accessor :result
+    
     def initialize &block
-        @result = ""
+        self.result = ""
         instance_eval &block
     end
 
     def html &block
-        @result.concat("<!doctype html>\n\n")
-        @result.concat("<html>\n")
+        self.result.concat("<!doctype html>\n\n")
+        self.result.concat("<html>\n")
         instance_eval &block
-        @result.concat("</html>\n")
+        self.result.concat("</html>\n")
     end
 
     def head &block
-        @result.concat("<head>\n")
+        self.result.concat("<head>\n")
         instance_eval &block
-        @result.concat("<head>\n")
+        self.result.concat("<head>\n")
     end
 
     def body &block
-        @result.concat("<body>\n")
+        self.result.concat("<body>\n")
         instance_eval &block
-        @result.concat("</body>\n")
+        self.result.concat("</body>\n")
     end
 
     def div &block
-        @result.concat(" <div>")
-        @result.concat(block.call(self))
+        self.result.concat(" <div>")
+        self.result.concat(block.call(self))
         # puts block.call(self)
-        @result.concat("</div>\n")
+        self.result.concat("</div>\n")
     end
     
-    def meta **array
-        if array[:charset]
-            @result.concat(" <meta #{array.keys.join}=\"#{array.values.join}\">\n")
+    def meta **params
+        if params[:charset]
+            self.result.concat(" <meta #{params.first.first}=\"#{params.values[0]}\">\n")
         else
-            @result.concat(" <meta name=\"#{array.keys.join}\" content=\"#{array.values.join}\">\n")
+            self.result.concat(" <meta name=\"#{params.first.first}\" content=\"#{params.values[0]}\">\n")
         end
     end
 
-    def title array
-        @result.concat("\n <title>#{array}</title>\n")
+    def title params
+        self.result.concat("\n <title>#{params}</title>\n")
     end
 
-    def link **array
-        @result.concat("\n <link rel=\"#{array.keys.join}\" href=\"#{array.values.join}\">\n")
+    def link **params
+        self.result.concat("\n <link rel=\"#{params.first.first}\" href=\"#{params.values[0]}\">\n")
     end
 
-    def script **array
-        @result.concat( " <script #{array.keys.join}=\"#{array.values.join}\"></script>\n")
+    def script **params
+        self.result.concat( " <script #{params.first.first}=\"#{params.values[0]}\"></script>\n")
     end
 
     def to_s
-        print @result
+        print self.result
     end
 
 end

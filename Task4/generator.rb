@@ -38,8 +38,6 @@ class Generator
             splitted_path = path.split('/')
             splitted_path.pop
             splitted_path = splitted_path.join('/').to_s
-
-            puts File.expand_path(splitted_path)
             unless File.directory?(File.expand_path(splitted_path))
                 puts "Path doesn't existt"
                 puts "Creating by default"

@@ -1,4 +1,4 @@
 task :cleanup do
-    File.delete("build/*.html") if File.exist?("build/*.html")
-    File.delete("build/*.md") if File.exist?("build/*.md")
+    File.delete(*Dir.glob('build/*.html'))
+    File.delete(*Dir.glob('build/*.md'))
 end
